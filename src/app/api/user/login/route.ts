@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
     //create token data
     const tokenData = {
-      _id: user.email,
+      _id: user._id,
       name: user.username,
       email: user.email,
       password: user.password,
@@ -43,6 +43,8 @@ export async function POST(request: NextRequest) {
     const response = NextResponse.json({
       message: "Login successfull",
       success: true,
+      token,
+      user,
     });
 
     response.cookies.set("token", token, { httpOnly: true });
